@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\title{CS440 Project 2}
+\date{8/5/2020}
+\author{
+	Raheel Ozair\\
+	\texttt{ro173}
+	\and
+	Yanbo Jiang\\
+	\texttt{yj274}
+}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{itemize}
+		\item In terms of implementation: perceptron starts by making a guess- if it is correct, it does nothing and moves to the next datum point; otherwise, it guessed wrong, and it will increment the correct label's weight and decrement the incorrect label's weight.
+		\\ 
+		On the other hand, for NaiveBayes, we make the assumption with our features vector that any feature is conditionally independent of any other feature, and uses Bayes' Theorem to calculate the label most probable given the feature values of each pixel.
+		\item When comparing Bayes and Perceptron (with only 1 iteration) on a training set size of 450, we found that Bayes was consistently faster by a large margin. When decreasing the training set size to around 100, both programs performed around the same in terms of time, with Bayes being slightly faster. Here's some data, using Faces:
+		\begin{itemize}
+			\item Bayes testing averages (5 repetitions for each percentage of training data):
+			\begin{itemize}
+				\item 10\% of training data: 49\%, Std Dev: 4.0
+				\item 20\% of training data: 54\%, Std Dev: 2.0
+				\item 30\% of training data: 61\%, Std Dev: 5.0
+				\item 40\% of training data: 61\%, Std Dev: 7.5
+				\item 50\% of training data: 69\%, Std Dev: 4.1 
+				\item 60\% of training data: 72\%, Std Dev: 3.8
+				\item 70\% of training data: 69\%, Std Dev: 1.9
+ 				\item 80\% of training data: 72\%, Std Dev: 1.9 
+				\item 90\% of training data: 72\%, Std Dev: 1.0
+				\item 100\% of training data: 73\%, Std Dev: 0.0
+			\end{itemize}
+			\item Perceptron testing averages (5 repetitions for each percentage of training data, on 5 iterations of Perceptron):
+			\begin{itemize}
+				\item 10\% of training data: 77.8\%, Std Dev: 12.4
+				\item 20\% of training data: 78.8\%, Std Dev: 10.4
+				\item 30\% of training data: 81.0\%, StdDev: 6.0
+				\item 40\% of training data: 82.8\%, StdDev: 2.4
+				\item 50\% of training data: 83.8\%, Std Dev: 0.4
+				\item 60\% of training data: 83.4\%, Std Dev: 1.2
+				\item 70\% of training data: 83.4\%, Std Dev: 1.2
+				\item 80\% of training data: 84.0\%, Std Dev: 0.0
+				\item 90\% of training data: 84.0\%, Std Dev: 0.0
+				\item 100\% of training data: 84.0\%, Std Dev: 0.0
+			\end{itemize}
+		\end{itemize}
+		Thus, it's clear that while Bayes is much quicker per iteration, Perceptron is much more accurate on average. 
+		\\
+		It's also pertinent to note that Perceptron becomes more accurate in less iterations than Bayes takes to become accurate. On the first repetition of Perceptron, it reached an accuracy of 70\% after the first iteration and did not decrease below, whereas Bayes did not reach 70\% accuracy until having about 60\% of the training data, on average.
+		\\
+		Additionally, it seems that while Perceptron has a larger standard deviation initially than Bayes, this approaches 0 more quickly than Bayes does.
+		\item We may also compare Bayes and Perceptron on Digits:
+		\begin{itemize}
+			\item Bayes Testing averages (5 repetitions for each percentage of training data)
+			\begin{itemize}
+				\item 10\% of training data: 76.8\%, Standard Dev: 3.6
+				\item 20\% of training data: 76.4\%, Standard Dev: 1.3
+				\item 30\% of training data: 79.0\%, Standard Dev: 2.1
+				\item 40\% of training data: 79.2\%, Standard Dev: 1.3
+				\item 50\% of training data: 77.8\%, Standard Dev: 1.7
+				\item 60\% of training data: 79.0\%, Standard Dev: 0.6
+				\item 70\% of training data: 79.4\%, Standard Dev: 1.6
+				\item 80\% of training data: 79.4\%, Standard Dev: 0.5
+				\item 90\% of training data: 79.0\%, Standard Dev: 0.0
+				\item 100\% of training data: 79.0\%, Standard Dev: 0.0
+			\end{itemize}
+			\item Attempting to run Perceptron on all of Digits would have taken extremely long, so instead, we'll run it on 500 data points from digits with 5 iterations, repeated 5 times:
+			\begin{itemize}
+				\item 10\% of training data: 75.0\%, Standard Dev: 14.0
+				\item 20\% of training data: 80.4\%, Standard Dev: 3.2
+				\item 30\% of training data: 79.2\%, Standard Dev: 5.6
+				\item 40\% of training data: 80.8\%, Standard Dev: 2.4
+				\item 50\% of training data: 80.0\%, Standard Dev: 4.0
+				\item 60\% of training data: 79.2\%, Standard Dev: 5.6
+				\item 70\% of training data: 81.4\%, Standard Dev: 1.2
+				\item 80\% of training data: 82.0\%, Standard Dev: 0.0
+				\item 90\% of training data: 82.0\%, Standard Dev: 0.0
+				\item 100\% of training data: 82.0\%, Standard Dev: 0.0
+			\end{itemize}
+			As you can see, even though we only ran Perceptron on 500 data points, it still maintains a higher degree of accuracy (especially with training data amounts over 70\%) than Bayes in most cases, with more-quicky decreasing standard deviation than Bayes.
+		\end{itemize}
+	\end{itemize}
+\end{document}
